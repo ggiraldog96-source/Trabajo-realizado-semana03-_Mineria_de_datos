@@ -1,5 +1,4 @@
 
-
 class Libro:
   def __init__(self,titulo,autor, genero,puntuacion):
     self.titulo = titulo
@@ -28,9 +27,15 @@ def agregar_libro():
      # Manejo básico de errores por si el usuario no escribe un número
     try:
         puntuacion = float(input("Puntuación (0.0 a 5.0): "))
+
+        if puntuacion >= 0 and puntuacion <= 5:
+           lista_libros.append(Libro(titulo, autor, genero, puntuacion))
+           print(f"¡'{titulo}' ha sido agregado con éxito!")
+        else:
+           print("La puntuación debe estar entre 0 y 5.")
     except ValueError:
         print("Error: La puntuación debe ser un número decimal. Inténtalo de nuevo.")
-        return
+        
 
     lista_libros.append(Libro(titulo, autor, genero, puntuacion))
     print(f"¡'{titulo}' ha sido agregado con éxito!")
@@ -61,9 +66,9 @@ def recomendar_libro():
     print("No se encontraron libros de este genero")
     return
   mayor = max(contador)
-  for libro2 in lista_genero:
-    if libro2.puntuacion == mayor:
-      print(f"Este es el libro: {libro2.titulo}, del genero: {genero_interes}, con mas puntuación")
+  for libromayor in lista_genero:
+    if libromayor.puntuacion == mayor:
+      print(f"Este es el libro: {libromayor.titulo}, del genero: {genero_interes}, con mas puntuación")
 while True:
     print("\n==== SISTEMA DE RECOMENDACIÓN DE LIBROS ====")
     print("1. Agregar Libro")
@@ -84,4 +89,3 @@ while True:
         break
     else:
         print("Opción no válida. Por favor, intente de nuevo.")
-
